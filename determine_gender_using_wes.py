@@ -5,6 +5,8 @@ import pysam
 import os
 import concurrent.futures as cfutures
 import glob
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 
@@ -52,7 +54,7 @@ def get_gender(bam):
         bam=bam,
         yreads=sum([valid_read(read) for read in workfile.fetch(region='chrY:2649520-59034050')]),
         xreads=sum([valid_read(read) for read in workfile.fetch(region='chrX:2699520-154931044')]),
-        totalreads=workfile.mapped)
+        totalreads=float(workfile.mapped))
 
 
 def plot_genders(res):
